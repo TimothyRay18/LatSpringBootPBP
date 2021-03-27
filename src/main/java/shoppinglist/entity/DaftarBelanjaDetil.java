@@ -49,13 +49,6 @@ public class DaftarBelanjaDetil
     {
     }
 
-    public void setId(long idObjekInduk, int noUrut)
-    {
-        id = new DaftarBelanjaDetilId();
-        id.setDaftarBelanjaId(idObjekInduk);
-        id.setNoUrut(noUrut);
-    }
-    
 //    public DaftarBelanja getInduk()
 //    {
 //        return induk;
@@ -71,9 +64,10 @@ public class DaftarBelanjaDetil
         return noUrut;
     }
 
-    public void setNoUrut(int _noUrut)
+    public void setId(long idObjekInduk, int noUrut)
     {
-        noUrut = _noUrut;
+        id = new DaftarBelanjaDetilId();
+        id.setDaftarBelanjaId(idObjekInduk);
         id.setNoUrut(noUrut);
     }
 

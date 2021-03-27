@@ -3,6 +3,8 @@ shoppinglist/http/ShoppingListCtrl.class
 shoppinglist/repository/DaftarBelanjaRepo.class
 shoppinglist/entity/DaftarBelanjaDetilId.class
 shoppinglist/entity/DaftarBelanjaDetil.class
+shoppinglist/controller/Controller.class
+shoppinglist/repository/DaftarBelanjaDetilRepo.class
 shoppinglist/http/ShoppingDataCreateDto.class
 shoppinglist/http/ShoppingDataCreateDto$DataBarang.class
 shoppinglist/service/ShoppingListService.class

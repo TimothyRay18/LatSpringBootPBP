@@ -1,22 +1,30 @@
 package shoppinglist;
 
+import javafx.scene.control.Control;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import shoppinglist.controller.Controller;
 import shoppinglist.entity.DaftarBelanja;
 import shoppinglist.entity.DaftarBelanjaDetil;
+import shoppinglist.repository.DaftarBelanjaDetilRepo;
 import shoppinglist.repository.DaftarBelanjaRepo;
 
+import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+
 
 @SpringBootApplication
 public class DemoShoppingListSpringBootApplication implements CommandLineRunner
 {
     @Autowired
     private DaftarBelanjaRepo repo;
+    private Scanner keyb = new Scanner(System.in);
 
     public static void main(String[] args)
     {
@@ -36,9 +44,7 @@ public class DemoShoppingListSpringBootApplication implements CommandLineRunner
                 System.out.println("\t" + barang.getNamaBarang() + " " + barang.getByk() + " " + barang.getSatuan());
             }
         }
-        
-        Scanner keyb = new Scanner(System.in);
-        
+
         // Baca berdasarkan ID
         System.out.print("Masukkan ID dari objek DaftarBelanja yg ingin ditampilkan: ");
         long id = Long.parseLong(keyb.nextLine());
@@ -52,5 +58,8 @@ public class DemoShoppingListSpringBootApplication implements CommandLineRunner
         else {
             System.out.println("\tTIDAK DITEMUKAN.");
         }
+        Controller.cariDaftarBelanja(repo,keyb);
+        Controller.tambahDaftarBelanja(repo,keyb);
+        Controller.hapusDaftarBelanja(repo,keyb);
     }
 }

@@ -1,6 +1,8 @@
 /Users/TimothyRay/IdeaProjects/LatSpringBootPBP/src/main/java/shoppinglist/http/ShoppingDataCreateDto.java
 /Users/TimothyRay/IdeaProjects/LatSpringBootPBP/src/main/java/shoppinglist/DemoShoppingListSpringBootApplication.java
+/Users/TimothyRay/IdeaProjects/LatSpringBootPBP/src/main/java/shoppinglist/repository/DaftarBelanjaDetilRepo.java
 /Users/TimothyRay/IdeaProjects/LatSpringBootPBP/src/main/java/shoppinglist/entity/DaftarBelanjaDetil.java
+/Users/TimothyRay/IdeaProjects/LatSpringBootPBP/src/main/java/shoppinglist/controller/Controller.java
 /Users/TimothyRay/IdeaProjects/LatSpringBootPBP/src/main/java/shoppinglist/entity/DaftarBelanja.java
 /Users/TimothyRay/IdeaProjects/LatSpringBootPBP/src/main/java/shoppinglist/entity/DaftarBelanjaDetilId.java
 /Users/TimothyRay/IdeaProjects/LatSpringBootPBP/src/main/java/shoppinglist/http/ShoppingListCtrl.java
