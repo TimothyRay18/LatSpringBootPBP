@@ -71,6 +71,10 @@ public class DaftarBelanjaDetil
         id.setNoUrut(noUrut);
     }
 
+    public DaftarBelanjaDetilId getId() {
+        return id;
+    }
+
     public String getNamaBarang()
     {
         return namaBarang;

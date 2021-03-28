@@ -56,9 +56,9 @@ public class DemoShoppingListSpringBootApplication implements CommandLineRunner
         else {
             System.out.println("\tTIDAK DITEMUKAN.");
         }
-//        Controller.cariDaftarBelanja(repo, keyb);
-//        Controller.tambahDaftarBelanja(repo, keyb);
-//        Controller.hapusDaftarBelanja(repo, repoDetil, keyb);
+        Controller.cariDaftarBelanja(repo, keyb);
+        Controller.tambahDaftarBelanja(repo, keyb);
+        Controller.hapusDaftarBelanja(repo, repoDetil, keyb);
         Controller.perbaharuiDaftarBelanja(repo, keyb);
     }
 }

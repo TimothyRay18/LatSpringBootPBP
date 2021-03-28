@@ -10,6 +10,7 @@ import shoppinglist.entity.DaftarBelanjaDetil;
 import shoppinglist.repository.DaftarBelanjaDetilRepo;
 import shoppinglist.repository.DaftarBelanjaRepo;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -103,7 +104,7 @@ public class Controller {
     }
 
     public static void perbaharuiDaftarBelanja(DaftarBelanjaRepo repo, Scanner keyb) {
-        System.out.print("Input id daftar belanja yang akan diperbaharui (ketik 0 untuk batal: ");
+        System.out.print("Input id daftar belanja yang akan diperbaharui (ketik 0 untuk batal): ");
         long id = Long.parseLong(keyb.nextLine());
         if(id != 0) {
             Optional<DaftarBelanja> optDb = repo.findById(id);
@@ -116,6 +117,33 @@ public class Controller {
                 daftarBelanja.setTanggal(LocalDateTime.now());
                 repo.save(daftarBelanja);
                 System.out.println("Daftar belanja telah berhasil diperbaharui");
+                while(true) {
+                    System.out.print("Masukan id barang yang diperbaharui (ketik 0 untuk batal): ");
+                    List<DaftarBelanjaDetil> listBarang = daftarBelanja.getDaftarBarang();
+                    int noUrut = Integer.parseInt(keyb.nextLine());
+                    if (noUrut == 0) {
+                        System.out.println("Ubah daftar belanja detil dibatalkan");
+                        break;
+                    } else {
+                        DaftarBelanjaDetil barang = daftarBelanja.getBarang(noUrut);
+                        System.out.println("Data baru: ");
+                        System.out.print("Nama barang: ");
+                        String nama = keyb.nextLine().trim();
+                        System.out.print("jumlah : ");
+                        long jumlah = keyb.nextInt();
+                        keyb.nextLine();
+                        System.out.print("Satuan: ");
+                        String satuan = keyb.nextLine();
+                        System.out.print("Memo : ");
+                        String memo = keyb.nextLine().trim();
+                        barang.setNamaBarang(nama);
+                        barang.setByk(jumlah);
+                        barang.setSatuan(satuan);
+                        barang.setMemo(memo);
+                        daftarBelanja.setBarang(barang, noUrut);
+                        repo.save(daftarBelanja);
+                    }
+                }
             } else {
                 System.out.println("Daftar belanja tidak ditemukan");
             }

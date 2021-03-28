@@ -86,4 +86,24 @@ public class DaftarBelanja
 //        for (int i = 0; i < daftarBrg.size(); i++)
 //            daftarBrg.get(i).setInduk(this);
     }
+
+    public DaftarBelanjaDetil getBarang(int nourut) {
+        for (DaftarBelanjaDetil barang : daftarBrg) {
+            if(barang.getId().getNoUrut() == nourut) {
+                return barang;
+            }
+        }
+        return null;
+    }
+
+    public void setBarang(DaftarBelanjaDetil barang, int noUrut) {
+        for (DaftarBelanjaDetil brg : daftarBrg) {
+            if(brg.getId().getNoUrut() == noUrut) {
+                brg.setNamaBarang(brg.getNamaBarang());
+                brg.setByk(brg.getByk());
+                brg.setSatuan(brg.getSatuan());
+                brg.setMemo(brg.getMemo());
+            }
+        }
+    }
 }
