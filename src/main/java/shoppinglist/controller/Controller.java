@@ -75,9 +75,9 @@ public class Controller {
             System.out.println("Judul: " + judul);
             for(int i=0;i<listBelanja.size();i++) {
                 System.out.println("\t[" + (i+1) + "]");
-                System.out.println("\tNama Barang: " + listBelanja.get(i).getNamaBarang());
-                System.out.println("\tJumlah: " + listBelanja.get(i).getByk() + " " +listBelanja.get(i).getSatuan());
-                System.out.println("\tMemo: " + listBelanja.get(i).getMemo());
+                System.out.println("\t\tNama Barang: " + listBelanja.get(i).getNamaBarang());
+                System.out.println("\t\tJumlah: " + listBelanja.get(i).getByk() + " " +listBelanja.get(i).getSatuan());
+                System.out.println("\t\tMemo: " + listBelanja.get(i).getMemo());
             }
             System.out.println("\tMenambah daftar belanja berhasil");
         } else {
