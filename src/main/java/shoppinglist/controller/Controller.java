@@ -29,14 +29,14 @@ public class Controller {
         List<DaftarBelanja> allByJudul = repo.findByJudulIgnoreCaseContaining(judul);
         if(!allByJudul.isEmpty()) {
             for (DaftarBelanja db : allByJudul) {
-                System.out.println(db.getJudul());
+                System.out.println("\t"+db.getJudul());
                 List<DaftarBelanjaDetil> listBarang = db.getDaftarBarang();
                 for (DaftarBelanjaDetil barang : listBarang) {
                     System.out.println("\t" + barang.getNamaBarang() + " " + barang.getByk() + " " + barang.getSatuan());
                 }
             }
         } else {
-            System.out.println("DATA TIDAK DITEMUKAN");
+            System.out.println("\tDATA TIDAK DITEMUKAN");
         }
     }
 
@@ -48,7 +48,6 @@ public class Controller {
             daftarBelanja.setJudul(judul);
             daftarBelanja.setTanggal(LocalDateTime.now());
             repo.save(daftarBelanja);
-            System.out.println("Daftar Belanja dengan judul " + judul + " berhasil ditambahkan");
             System.out.println("Input jumlah detil daftar belanja: ");
             int jml = keyb.nextInt();
             keyb.nextLine();
@@ -56,31 +55,38 @@ public class Controller {
             for(int i=0;i<jml;i++) {
                 DaftarBelanjaDetil detil = new DaftarBelanjaDetil();
                 detil.setId(daftarBelanja.getId(),i + 1);
-                System.out.println("Input nama barang: ");
+                System.out.print("Input nama barang: ");
                 String nama = keyb.nextLine();
                 detil.setNamaBarang(nama);
-                System.out.println("Input jumlah: ");
+                System.out.print("Input jumlah: ");
                 long banyak = Long.parseLong(keyb.nextLine());
                 detil.setByk(banyak);
-                System.out.println("Input satuan: ");
+                System.out.print("Input satuan: ");
                 String satuan = keyb.nextLine();
                 detil.setSatuan(satuan);
-                System.out.println("Input memo: ");
+                System.out.print("Input memo: ");
                 String memo = keyb.nextLine();
                 detil.setMemo(memo);
                 listBelanja.add(detil);
             }
             daftarBelanja.setDaftarBarang(listBelanja);
             repo.save(daftarBelanja);
-            System.out.println("Menambah detil belanja berhasil");
+            System.out.println("Judul: " + judul);
+            for(int i=0;i<listBelanja.size();i++) {
+                System.out.println("\t[" + (i+1) + "]");
+                System.out.println("\tNama Barang: " + listBelanja.get(i).getNamaBarang());
+                System.out.println("\tJumlah: " + listBelanja.get(i).getByk() + " " +listBelanja.get(i).getSatuan());
+                System.out.println("\tMemo: " + listBelanja.get(i).getMemo());
+            }
+            System.out.println("\tMenambah daftar belanja berhasil");
         } else {
-            System.out.println("Menambah daftar belanja dibatalkan");
+            System.out.println("\tMenambah daftar belanja dibatalkan");
         }
     }
 
     public static void hapusDaftarBelanja(DaftarBelanjaRepo repo, DaftarBelanjaDetilRepo repoDetil, Scanner keyb) {
         System.out.print("Input id daftar belanja yang akan dihapus(ketik 0 untuk batal): ");
-        long id = Integer.parseInt(keyb.nextLine());
+        long id = Long.parseLong(keyb.nextLine());
         if(id != 0) {
             Optional<DaftarBelanja> optDB = repo.findById(id);
             if (optDB.isPresent()) {
@@ -93,6 +99,28 @@ public class Controller {
             }
         } else {
             System.out.println("Hapus daftar belanja dibatalkan");
+        }
+    }
+
+    public static void perbaharuiDaftarBelanja(DaftarBelanjaRepo repo, Scanner keyb) {
+        System.out.print("Input id daftar belanja yang akan diperbaharui (ketik 0 untuk batal: ");
+        long id = Long.parseLong(keyb.nextLine());
+        if(id != 0) {
+            Optional<DaftarBelanja> optDb = repo.findById(id);
+            if(optDb.isPresent()) {
+                DaftarBelanja daftarBelanja = optDb.get();
+                System.out.println("Judul: " + daftarBelanja.getJudul());
+                System.out.print("Input judul baru: ");
+                String judul = keyb.nextLine();
+                daftarBelanja.setJudul(judul);
+                daftarBelanja.setTanggal(LocalDateTime.now());
+                repo.save(daftarBelanja);
+                System.out.println("Daftar belanja telah berhasil diperbaharui");
+            } else {
+                System.out.println("Daftar belanja tidak ditemukan");
+            }
+        } else {
+            System.out.println("Perbaharui data dibatalkan");
         }
     }
 }
