@@ -20,7 +20,7 @@ public class DemoShoppingListSpringBootApplication implements CommandLineRunner
 {
     @Autowired
     private DaftarBelanjaRepo repo;
-
+    @Autowired
     private DaftarBelanjaDetilRepo repoDetil;
     private Scanner keyb = new Scanner(System.in);
 
