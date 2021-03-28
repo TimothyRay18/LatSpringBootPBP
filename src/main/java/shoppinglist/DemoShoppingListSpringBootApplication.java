@@ -1,6 +1,5 @@
 package shoppinglist;
 
-import javafx.scene.control.Control;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,9 +10,6 @@ import shoppinglist.entity.DaftarBelanjaDetil;
 import shoppinglist.repository.DaftarBelanjaDetilRepo;
 import shoppinglist.repository.DaftarBelanjaRepo;
 
-import java.sql.Connection;
-import java.time.LocalDateTime;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -24,6 +20,8 @@ public class DemoShoppingListSpringBootApplication implements CommandLineRunner
 {
     @Autowired
     private DaftarBelanjaRepo repo;
+    @Autowired
+    private DaftarBelanjaDetilRepo repoDetil;
     private Scanner keyb = new Scanner(System.in);
 
     public static void main(String[] args)
@@ -60,6 +58,6 @@ public class DemoShoppingListSpringBootApplication implements CommandLineRunner
         }
         Controller.cariDaftarBelanja(repo,keyb);
         Controller.tambahDaftarBelanja(repo,keyb);
-        Controller.hapusDaftarBelanja(repo,keyb);
+        Controller.hapusDaftarBelanja(repo, repoDetil, keyb);
     }
 }
